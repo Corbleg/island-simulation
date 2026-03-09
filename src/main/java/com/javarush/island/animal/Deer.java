@@ -8,16 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Map;
 
 /**
- * Класс Кролик - наследник класса Животное
- * - это травоядное животное, которое питается растениями. Кролики не едят других животных, поэтому их карта вероятности поедания других животных будет пустой. Кролики могут перемещаться по острову и размножаться, но эти методы пока оставлены как заглушки для дальнейшей реализации.
+ * Класс Олень - наследник класса Животное
+ * - это травоядное животное, которое питается растениями. Олени не едят других животных, поэтому их карта вероятности поедания других животных будет пустой. Кролики могут перемещаться по острову и размножаться, но эти методы пока оставлены как заглушки для дальнейшей реализации.
  */
 @Slf4j
-public class Rabbit extends Animal {
+public class Deer extends Animal {
 
-    private static final double WEIGHT = 2;
-    private static final double MAX_SATIETY = 0.45;
+    private static final double WEIGHT = 300;
+    private static final double MAX_SATIETY = 50;
 
-    public Rabbit() {
+    public Deer() {
         super(WEIGHT, MAX_SATIETY);
         this.eatingProbabilities = Map.of(); // Кролики не едят других животных
     }
@@ -28,12 +28,12 @@ public class Rabbit extends Animal {
         if (!isAlive()) {
             return;
         }
-        // Кролики питаются растениями
+        // Олени питаются растениями
         if (currentSatiety < maxSatiety) {
             Plant plant = location.removePlant();
             if (plant != null) {
                 currentSatiety = Math.min(maxSatiety, currentSatiety + plant.getWeight());
-                log.debug("Кролик съел растение и восстановил сытость до {}", currentSatiety);
+                log.debug("Олень съел растение и восстановил сытость до {}", currentSatiety);
             }
         }
 

@@ -1,8 +1,16 @@
 package com.javarush.island.animal;
 
+import com.javarush.island.model.Location;
+import com.javarush.island.model.Island;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
+@Data
+@NoArgsConstructor
+@Slf4j
 public abstract class Animal {
     protected double weight;
     protected double maxSatiety; // максимальная сытость
@@ -13,15 +21,15 @@ public abstract class Animal {
     //Карта вероятности поедания других животных
     protected Map<Class<? extends Animal>, Integer> eatingProbabilities;
 
-    public Animal(double weight, double maxSatiety, double currentSatiety) {
+    public Animal(double weight, double maxSatiety) {
         this.weight = weight;
         this.maxSatiety = maxSatiety;
-        this.currentSatiety = currentSatiety;
+        this.currentSatiety = maxSatiety;
     }
 
     // eat, move, reproduce
-    public abstract void eat(Loation location);
-    public abstract void move(Island island), int currentX, int currentY);
+    public abstract void eat(Location location);
+    public abstract void move(Island island, int currentX, int currentY);
     public abstract void reproduce(Location location);
     public void die() {
         this.alive = false;
